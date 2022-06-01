@@ -33,7 +33,6 @@ def get_unique_industries(path):
     for industry in data:
         if industry["industry"] != '':
             industries.add(industry["industry"])
-    print(industries)
     return industries
 
 
@@ -56,21 +55,12 @@ def filter_by_industry(jobs, industry):
 
 
 def get_max_salary(path):
-    """Get the maximum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The maximum salary paid out of all job opportunities
-    """
-    pass
+    data = read(path)
+    max_number = 0
+    for row in data:
+        if row["max_salary"].isdigit() and int(row["max_salary"]) > max_number:
+            max_number = int(row["max_salary"])
+    return max_number
 
 
 def get_min_salary(path):
